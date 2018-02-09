@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+
   fg1: FormGroup;
   fg2: FormGroup;
   fg3: FormGroup;
@@ -22,7 +22,7 @@ export class AppComponent {
     this.fg1 = new FormGroup({
       'firstName': new FormControl('Vasily', Validators.required),
       'lastName': new FormControl('Pupkin', Validators.required),
-      'birthDate': new FormControl('dd-mm-yyyy', Validators.required)
+      'birthDate': new FormControl('', [Validators.required, this.validateAge])
     });
     this.fg2 = new FormGroup({
       'phone': new FormControl('+1234567890', [Validators.required, Validators.pattern('[\+][0-9]*')]),
@@ -38,6 +38,14 @@ export class AppComponent {
     this.parentGroup.addControl('fg3', this.fg3)
   }
 
+  validateAge(control: FormControl) {
+    let year = control.value.split('-')[0];
+    if (((new Date).getFullYear() - year) < 18) {
+      alert('Must be 18+!');
+      return year;
+    }
+    return null
+  }
   submit(form) {
     console.log(form.value);
   }
