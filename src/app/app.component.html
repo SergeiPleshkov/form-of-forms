@@ -1,20 +1,36 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<form [formGroup]="parentGroup" class="form-control col-4 offset-4" style="margin-top: 10px; margin-bottom: 50px;">
+  <div formGroupName="fg1" class="input-control">
+    <input formControlName="firstName" type="text" id="firstName" class="form-control">
+    <label for="firstName">First name</label>
+    <input formControlName="lastName" type="text" id="lastName" class="form-control">
+    <label for="lastName">Last name</label>
+    <input formControlName="birthDate" type="date" id="birthDate" class="form-control">
+    <label for="borthDate">Date of birth</label>
+    <br>
+    <button class="btn btn-primary col-3" [disabled]="fg1.invalid" (click)="submit(fg1)">Send first</button>
+    <hr>
+  </div>
+  <div formGroupName="fg2" class="input-control">
+    <input formControlName="phone" id="phone" type="text" class="form-control">
+    <label for="phone">Phone</label>
+    <input formControlName="email" id="email" type="text" class="form-control">
+    <label for="email">Email</label>
+    <input formControlName="adress" id="adress" type="text" class="form-control">
+    <label for="adress">Adress</label>
+    <br>
+    <button class="btn btn-primary col-3" [disabled]="fg2.invalid" (click)="submit(fg2)">Send second</button>
+    <hr>
+  </div>
+  <div formGroupName="fg3" class="input-control">
+    <label for="male" class="form-control" style="border: none;">
+      <input formControlName="gender" name="gender" value="male" id="male" class="form-control" type="radio" style="width: 10px;">Male</label>
+    <label for="female" class="form-control" style="border: none;">
+      <input formControlName="gender" name="gender" value="female" id="female" class="form-control" type="radio" style="width: 10px;">Female</label>
+    <label for="spam" class="form-control" style="border: none;">
+      <input formControlName="spam" type="checkbox" id="spam" name="spam" class="form-control" style="width: 10px;">Receive spam</label>
+    <br>
+    <button class="btn btn-primary col-3" [disabled]="fg3.invalid" (click)="submit(fg3)">Send third</button>
+    <hr>
+  </div>
+  <button [disabled]="parentGroup.invalid" class="btn btn-primary col-3 offset-9" (click)="submit(parentGroup)">Send all</button>
+</form>
